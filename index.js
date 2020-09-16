@@ -47,7 +47,7 @@ app.use(function(err, req, res) {
 });
 
 
-app.listen(port, hostname, function () {
-    console.log(`Listening at http://${hostname}:${port}/...`);
+app.listen(port, function () {
+    console.log(`Listening at ${port}/...`);
 });
 
