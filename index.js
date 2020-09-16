@@ -8,9 +8,9 @@ const mongoose = require('mongoose');
 let usersRouter = require('./src/routes/UsersRouter');
 
 // Local URL
-const url = 'mongodb://127.0.0.1:27017/kyze';
+// const url = 'mongodb://127.0.0.1:27017/kyze';
 // Development URL
-// const url = 'mongodb+srv://Admin:admin@kyze-cluster.lmr0q.mongodb.net/kyze';
+const url = 'mongodb+srv://Admin:admin@kyze-cluster.lmr0q.mongodb.net/kyze';
 
 // Connect to MongoDB server
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false });
