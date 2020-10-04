@@ -2,10 +2,37 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+var subjectSchema = new Schema({
+    subjectId: String,
+    enabled: Boolean,
+    price: Number
+});
+
+var educationSchema = new Schema({
+    college: String,
+    degree: String
+});
+
 var userSchema = new Schema({
-    email: String,
     firstName: String,
     lastName: String,
+    sex: String,
+    dob: Date,
+    phone: String,
+    email: String,
+    addressStreet: String,
+    addressAptnum: String,
+    addressCity: String,
+    addressState: String,
+    addressZipcode: String,
+    password: String,
+    subjects: [subjectSchema],
+    education: [educationSchema],
+    cancellationPolicy: Number,
+    currentLocationRadius: Number,
+    homeLocationRadius: Number,
+    profileHeadline: String,
+    profileBio: String
 },{
     toJSON: {
         getters: true,
