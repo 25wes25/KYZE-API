@@ -5,7 +5,10 @@ let app = express();
 
 const mongoose = require('mongoose');
 
-let usersRouter = require('./src/routes/UsersRouter');
+let subjectsRouter = require('./src/routes/SubjectsRouter');
+let tutorsRouter = require('./src/routes/TutorsRouter');
+let studentsRouter = require('./src/routes/StudentsRouter');
+let searchRouter = require('./src/routes/SearchRouter');
 
 // Local URL
 // const url = 'mongodb://127.0.0.1:27017/kyze';
@@ -35,15 +38,17 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.enable('strict routing');
 app.set('strict routing', true);
 app.use(router);
-app.use(usersRouter);
-
+app.use(tutorsRouter);
+app.use(studentsRouter);
+app.use(subjectsRouter);
+app.use(searchRouter);
 
 app.get('/', function (req, res) {
     res.send("KYZE-API")
 });
 
 app.use(function(err, req, res) {
-    console.log(err);
+    console.log("Catch All Error");
 });
 
 
