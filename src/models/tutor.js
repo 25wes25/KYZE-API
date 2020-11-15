@@ -2,18 +2,44 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-var subjectSchema = new Schema({
-    subjectId: String,
+var tutoredSubjectSchema = new Schema({
+    title: String,
+    subject: String,
+    courseId: String,
     enabled: Boolean,
     price: Number
+}, {
+    toJSON: {
+        getters: true,
+    },
+});
+
+tutoredSubjectSchema.set('toJSON', {
+    transform: function (doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+    }
 });
 
 var educationSchema = new Schema({
     college: String,
     degree: String
+}, {
+    toJSON: {
+        getters: true,
+    },
 });
 
-var userSchema = new Schema({
+educationSchema.set('toJSON', {
+    transform: function (doc, ret) {
+        ret.id = ret._id;
+        delete ret._id;
+        delete ret.__v;
+    }
+});
+
+var tutorSchema = new Schema({
     firstName: String,
     lastName: String,
     sex: String,
@@ -25,26 +51,26 @@ var userSchema = new Schema({
     addressCity: String,
     addressState: String,
     addressZipcode: String,
-    password: String,
-    subjects: [subjectSchema],
+    subjects: [tutoredSubjectSchema],
     education: [educationSchema],
     cancellationPolicy: Number,
     currentLocationRadius: Number,
     homeLocationRadius: Number,
     profileHeadline: String,
-    profileBio: String
+    profileBio: String,
+    rating: Number
 },{
     toJSON: {
         getters: true,
     },
 });
 
-userSchema.set('toJSON', {
-    transform: function (doc, ret, options) {
+tutorSchema.set('toJSON', {
+    transform: function (doc, ret) {
         ret.id = ret._id;
         delete ret._id;
         delete ret.__v;
     }
 });
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('tutor', tutorSchema);
